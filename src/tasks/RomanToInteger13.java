@@ -14,6 +14,7 @@ public class RomanToInteger13 {
                     result += 900;
                     cache = "";
                 }
+                continue;
             }
 
             if (s.equals("D")) {
@@ -23,6 +24,7 @@ public class RomanToInteger13 {
                     result += 400;
                     cache = "";
                 }
+                continue;
             }
 
             if (s.equals("C")) {
@@ -32,6 +34,7 @@ public class RomanToInteger13 {
                     result += 90;
                     cache = "";
                 }
+                continue;
             }
 
             if (s.equals("L")) {
@@ -45,19 +48,19 @@ public class RomanToInteger13 {
                     }
                     cache = "";
                 }
+                continue;
             }
 
             if (s.equals("X")) {
-                if (cache.isEmpty()) {
-                    result += 10;
-                } else {
+                if (!cache.isEmpty()) {
                     if (cache.equals("C")) {
                         result += 100;
                     } else { //I
                         result += 9;
-                        cache = "";
                     }
                 }
+                cache = "X";
+                continue;
             }
 
             if (s.equals("V")) {
@@ -73,21 +76,20 @@ public class RomanToInteger13 {
                     }
                     cache = "";
                 }
+                continue;
             }
 
             if (s.equals("I")) {
-                if (cache.isEmpty()) {
-                    cache = "I";
-                } else {
+                if (!cache.isEmpty()) {
                     if (cache.equals("C")) {
                         result += 100;
                     } else if (cache.equals("X")) {
                         result += 10;
                     } else { //I
-                        result += 2;
+                        result += 1;
                     }
-                    cache = "";
                 }
+                cache = "I";
             }
         }
 
