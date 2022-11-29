@@ -30,8 +30,12 @@ public class RomanToInteger13 {
             if (s.equals("C")) {
                 if (cache.isEmpty()) {
                     cache = "C";
-                } else { //X
-                    result += 90;
+                } else {
+                    if (cache.equals("C")) {
+                        result += 200;
+                    } else { //X
+                        result += 90;
+                    }
                     cache = "";
                 }
                 continue;
@@ -42,7 +46,7 @@ public class RomanToInteger13 {
                     result += 50;
                 } else {
                     if (cache.equals("C")) {
-                        result += 100;
+                        result += 150;
                     } else { //X
                         result += 40;
                     }
@@ -52,14 +56,20 @@ public class RomanToInteger13 {
             }
 
             if (s.equals("X")) {
-                if (!cache.isEmpty()) {
+                if (cache.isEmpty()) {
+                    cache = "X";
+                } else {
                     if (cache.equals("C")) {
                         result += 100;
+                        cache = "X";
+                    } else if (cache.equals("X")) {
+                        result += 20;
+                        cache = "";
                     } else { //I
                         result += 9;
+                        cache = "";
                     }
                 }
-                cache = "X";
                 continue;
             }
 
@@ -68,28 +78,31 @@ public class RomanToInteger13 {
                     result += 5;
                 } else {
                     if (cache.equals("C")) {
-                        result += 100;
+                        result += 105;
                     } else if (cache.equals("X")) {
-                        result += 10;
+                        result += 15;
                     } else { //I
                         result += 4;
                     }
                     cache = "";
                 }
-                continue;
             }
 
             if (s.equals("I")) {
-                if (!cache.isEmpty()) {
+                if (cache.isEmpty()) {
+                    cache = "I";
+                } else {
                     if (cache.equals("C")) {
                         result += 100;
+                        cache = "I";
                     } else if (cache.equals("X")) {
                         result += 10;
-                    } else { //I
-                        result += 1;
+                        cache = "I";
+                    } else {
+                        result += 2;
+                        cache = "";
                     }
                 }
-                cache = "I";
             }
         }
 
